@@ -2,7 +2,7 @@ import threading
 import time
 import sys
 import os
-
+import signal
 
 t0 = int(1000.0 * time.time())  # process start time in ms
 
@@ -12,23 +12,17 @@ else:
     print('interval missing')
     exit(-1)
 
-
-ev = threading.Event()
-
-
-def timer_elapsed():
-    t_now = int(1000.0*time.time()) - t0
-    msg = 'Clock {} from {}'.format(t_now, os.getpid())
-    print(msg)
-    ev.set()
-
+stop_evt = threading.Event()
+signal.signal(signal.SIGBREAK, lambda: stop_evt.set())
 
 while True:
-    threading.Timer(interval, timer_elapsed).start()
-    ev.wait()
-    if ev.is_set():
-        ev.clear()
-    else:
-        print('.')
-
+    """
+    periodically do some work (print time and process id) 
+    """
+    t_now = int(1000.0*time.time()) - t0
+    msg = 'Clock {} from {}'.format(t_now, os.getpid())
+    print(msg, flush=True)
+    stop_evt.wait(interval)
+    if stop_evt.is_set():
+        break
 
