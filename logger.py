@@ -42,8 +42,8 @@ def stream_reader(pipe, log_data):
         clock, proc_id = parse_line(str(text))
         log_data.append((clock, proc_id))
         if len(log_data) >= 10:
-            print("10 reached")
-            pipe.kill()
+            print("10 packets from {} reached".format(proc_id))
+            pipe.send_signal(signal.SIGTERM)
             return
 
 
