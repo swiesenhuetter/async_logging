@@ -13,7 +13,8 @@ else:
     exit(-1)
 
 stop_evt = threading.Event()
-signal.signal(signal.SIGBREAK, lambda: stop_evt.set())
+if sys.platform == 'win32':
+    signal.signal(signal.SIGBREAK, lambda: stop_evt.set())
 
 while True:
     """

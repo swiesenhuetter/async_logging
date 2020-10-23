@@ -48,7 +48,7 @@ def stream_reader(pipe, log_data):
 
 
 """list of intervals in seconds"""
-time_intervals = [0.2, 0.1, 1]  # simulate async devices
+time_intervals = [0.2, 0.1, 1, 0.01]  # simulate async devices
 """for each interval entry start a separate process"""
 pipes = [start_proc(interval) for interval in time_intervals]
 receive_data = []
