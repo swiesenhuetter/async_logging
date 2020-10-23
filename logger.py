@@ -47,32 +47,35 @@ def stream_reader(pipe, log_data):
             return
 
 
-"""list of intervals in seconds"""
-time_intervals = [0.2, 0.1, 1, 0.01]  # simulate async devices
-"""for each interval entry start a separate process"""
-pipes = [start_proc(interval) for interval in time_intervals]
-receive_data = []
-threads = []
+if __name__ == "__main__":
+    # execute only if run as a script
 
+    """simulate async devices, each number is a cycle in seconds"""
+    time_intervals = [0.2, 0.1, 1, 0.01]
+    """for each interval entry start a separate process"""
+    pipes = [start_proc(interval) for interval in time_intervals]
+    receive_data = []
+    threads = []
 
-for i in range(len(pipes)):
-    """
-    for each process start a reader thread 
-    """
-    receive_data.append([])
-    t = threading.Thread(target=stream_reader, args=(pipes[i], receive_data[i]))
-    t.start()
-    threads.append(t)
+    for i in range(len(pipes)):
+        """
+        for each process start a reader thread 
+        """
+        receive_data.append([])
+        t = threading.Thread(target=stream_reader, args=(pipes[i], receive_data[i]))
+        t.start()
+        threads.append(t)
 
-[t.join() for t in threads]
-table = list(zip(*receive_data))  # transpose list of lists
+    [t.join() for t in threads]
+    table = list(zip(*receive_data))  # transpose list of lists
+    [print(line) for line in table]   # by device
 
-[print(line) for line in table]   # by device
+    all_events = []
 
-all_events = []
-"""one column per process"""
-[all_events.extend(col) for col in receive_data]
-"""one line per event"""
-all_events = (sorted(all_events, key=lambda x: x[0]))  # all events on the same time axis
-[print(line) for line in all_events]   # by device
+    """one column per process"""
+    [all_events.extend(col) for col in receive_data]
+
+    """one line per event"""
+    all_events = (sorted(all_events, key=lambda x: x[0]))  # all events on the same time axis
+    [print(line) for line in all_events]   # by device
 
