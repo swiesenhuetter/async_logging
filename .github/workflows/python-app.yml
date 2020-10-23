@@ -35,4 +35,5 @@ jobs:
       run: |
         pytest
     - name: Run test application
+      run: |
         python logger.py
