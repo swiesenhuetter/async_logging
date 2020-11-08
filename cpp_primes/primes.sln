@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "primes", "primes.vcxproj", "{72FF7D73-6BDA-4FC7-BB35-938C4623C393}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test.vcxproj", "{EFAC5FD7-7474-4760-A5F9-11F9C43FDF65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72FF7D73-6BDA-4FC7-BB35-938C4623C393}.Debug|x64.ActiveCfg = Debug|x64
+		{72FF7D73-6BDA-4FC7-BB35-938C4623C393}.Debug|x64.Build.0 = Debug|x64
+		{72FF7D73-6BDA-4FC7-BB35-938C4623C393}.Release|x64.ActiveCfg = Release|x64
+		{72FF7D73-6BDA-4FC7-BB35-938C4623C393}.Release|x64.Build.0 = Release|x64
+		{EFAC5FD7-7474-4760-A5F9-11F9C43FDF65}.Debug|x64.ActiveCfg = Debug|x64
+		{EFAC5FD7-7474-4760-A5F9-11F9C43FDF65}.Debug|x64.Build.0 = Debug|x64
+		{EFAC5FD7-7474-4760-A5F9-11F9C43FDF65}.Release|x64.ActiveCfg = Release|x64
+		{EFAC5FD7-7474-4760-A5F9-11F9C43FDF65}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BFD48B4-A6CE-4FCE-93F3-73E8E82C9D77}
+	EndGlobalSection
+EndGlobal

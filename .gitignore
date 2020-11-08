@@ -2,3 +2,6 @@ virt_env
 .idea
 __pycache__
 doku
+cpp_primes/x64
+cpp_primes/.*
+cpp_primes/*.user
