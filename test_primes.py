@@ -38,3 +38,8 @@ def test_split(from_to):
     result = pr.split(from_to, 3)
     assert 3 == len(result)
     assert from_to.stop == (result[-1].stop - 1)
+
+
+def test_huge_prime():
+    number = 10657331232548839
+    assert pr.is_prime(number)
