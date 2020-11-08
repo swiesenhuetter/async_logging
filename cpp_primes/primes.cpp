@@ -2,7 +2,7 @@
 #include <cmath>
 
 namespace primes {
-    PRIMES_API bool is_prime(uint64_t n)
+    EXPORT bool is_prime(uint64_t n)
     {
         if (n == 2)
             return true;
