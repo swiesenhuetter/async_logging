@@ -1,5 +1,6 @@
 import primes as pr
 import pytest
+import cpp_primes as cppr
 
 
 def test_range():
@@ -13,6 +14,16 @@ def test_prime():
     assert not pr.is_prime(4)
     assert not pr.is_prime(100)
     assert pr.is_prime(101)
+
+
+@pr.timeit
+def test_huge_prime_cpp():
+    assert cppr.cpp_is_prime(790738119649411319)
+
+
+@pr.timeit
+def test_huge_prime_py():
+    assert pr.is_prime(10657331232548839)
 
 
 @pytest.fixture

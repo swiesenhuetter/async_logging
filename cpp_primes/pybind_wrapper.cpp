@@ -1,4 +1,4 @@
-cpp#include <pybind11/pybind11.h>
+#include <pybind11/pybind11.h>
 #include "primes.h"
 
 bool cpp_is_prime(uint64_t n)
