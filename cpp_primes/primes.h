@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <cstdint>
+#include <vector>
 
 
 // C - interface
@@ -19,5 +20,10 @@
 
 namespace primes
 {
+    struct Interval { uint64_t begin{}, end{}; };
+    std::vector<Interval> split(Interval interval, uint64_t num_partitions);
+
     EXPORT bool is_prime(uint64_t n);
+
+    EXPORT bool is_prime_par(uint64_t n);
 }

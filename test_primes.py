@@ -22,6 +22,11 @@ def test_huge_prime_cpp():
 
 
 @pr.timeit
+def test_huge_prime_cpp_parallel():
+    assert cppr.cpp_is_prime_2core(790738119649411319)
+
+
+@pr.timeit
 def test_huge_prime_py():
     assert pr.is_prime(10657331232548839)
 

@@ -16,7 +16,7 @@ extra_compile_args = ["-std=c++11", "-Wall", "-Wextra"]
 
 setup(
     name="cpp_primes",
-    version="0.0.1",
+    version="0.0.2",
     packages="",
     description="primes test example cpp module",
     extra_compile_args=extra_compile_args,
