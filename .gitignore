@@ -5,3 +5,8 @@ doku
 cpp_primes/x64
 cpp_primes/.*
 cpp_primes/*.user
+cython_primes/*.c
+cython_primes/*.html
+cython_primes/*.pyd
+cython_primes/build
+

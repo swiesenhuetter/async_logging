@@ -31,6 +31,12 @@ def test_huge_prime_py():
     assert pr.is_prime(10657331232548839)
 
 
+@pr.timeit
+def test_cython_variant():
+    import cython_primes as cyp
+    assert cyp.is_prime(10657331232548839)
+
+
 @pytest.fixture
 def from_to():
     return pr.Interval(3, 11)

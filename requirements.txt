@@ -2,3 +2,5 @@ pdoc3
 pytest
 pybind11
 ./cpp_primes
+./cython_primes
+

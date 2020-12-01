@@ -41,7 +41,7 @@ jobs:
         path: doc/*.html
     - name: Test with pytest
       run: |
-        pytest
+        pytest --capture=tee-sys
     - name: Run test application
       run: |
         python logger.py
