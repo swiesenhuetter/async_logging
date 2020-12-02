@@ -16,7 +16,33 @@ The elegance of Python is a result of abstractions and it comes at a price. Deta
 
 The intended audience for this article is the Python programmer who has hit those limitations in pure Python. If you have never used compiled and statically typed programming languages, you will benefit from reading any introductory material on C++ or C and from trying a few simple examples.Large-scale software design patterns and architecture considerations can be ignored at this moment as we will only apply those tools selectively and locally to treat just the performance bottlenecks we have identified.   
  
-In this article I will demonstrate two methods to overcome those two weaknesses. Both make use on the efficiency of C and C++. The design of those languages was guided by  the Zero-overhead principle which states that: 
- * You don't pay for something you don't use
- * You will not benefit from implementing yourself what is provided by the language 
+I will demonstrate two methods to improve on parallelism and on execution speed. Both make use on the efficiency of C and C++. The design of those languages was guided by the Zero-overhead principle which states that: 
+ * You should not have to pay for something you don't use
+ * Using language features is better than implementing them yourself 
  
+ ## Cython
+ Cython is an implementation of the Python language. Actually, it is a superset of the language because it has some C-inspired features while it also accepts unmodified Python programs. Cython compiles this code to C which is then compiled to machine instructions in a second step. It is used to create modules which can be imported and called from interpreted Python. Simply get it from PyPI, the Python Package index, by running ```pip install Cython```
+ 
+ To illustrate the possible performance gains, I chose a prime number test. This test is a function that takes a number and returns a boolean value. The return value is `True` if the number is prime or `False` if it has a divisor. This example is simple but it shows a noticeable delay when  large prime numbers `n` are tested and no divisor candidate divides `n`. 
+ ### The pure Python version
+ ``` python
+def has_divisor(n, search_interval):
+    for divisor in range(search_interval.start, search_interval.stop, 2):
+        if n % divisor == 0:
+            print("{}/{}={}".format(n, divisor, n//divisor))
+            return divisor
+    return None
+
+def is_prime(n):
+    if n == 2:
+        return True
+    if n % 2 == 0 or n <= 1:
+        return False
+    search_interval = Interval(start=3, stop=int(math.sqrt(n)) + 1)
+    found_div = has_divisor(n, search_interval)
+    if found_div:
+        print("{}/{}={}".format(n, found_div, n//found_div))
+        return False
+    return True
+``` 
+for a large prime number such as 10657331232548839 `is_prime(10657331232548839)` will run several seconds. This number is so big, that 64 bit integer is needed to encode it.
