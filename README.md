@@ -46,7 +46,15 @@ if __name__ == "__main__":
  * try some other numbers for `n` 
     
 ### Cython
- Cython is an implementation of the Python language. Actually, it is a superset of the language because it has some C-inspired features which are not Python, while it also accepts unmodified Python programs. Cython compiles code to C which is then compiled to machine instructions in a second step. It is used to create modules which can be imported and called from interpreted Python. Simply get it from PyPI, the Python Package index.
+ Cython is another implementation of the Python language. Actually, it is a superset of the language because it has some C-inspired features which are not Python, while it also accepts unmodified Python programs. Cython compiles code to C which is then compiled to machine instructions in a second step. It is used to create modules which can be imported and called from interpreted Python. Simply get it from PyPI, the Python Package index.
+
+To accelerate our program we would like to know where its performance bottlenecks are. In addition to compiling source code to C, Cython can also generate colored html files from the sources. Statements which could be translated directly to C are white. Statements which need Python interaction are yellow. The more Python is needed the more intensive the yellow color.   
+ ![Unoptimized](cython_unopt.png)
+ Our goal is to modify the code so that there is no yellow left. Especially inside of loops we want less interation with the python language.
+ (does it call the python dll interpreter ? )  
+
+
+ ![Unoptimized](cython_opt.png)
  
 ### An Exercise in Cython
  * get Cython by running ```pip install Cython```
